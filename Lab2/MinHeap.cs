@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 
 namespace Lab2
 {
@@ -9,11 +10,9 @@ namespace Lab2
         private const int initialSize = 8;
 
         public int Count { get; private set; }
-
         public int Capacity => array.Length;
 
         public bool IsEmpty => Count == 0;
-
 
         public MinHeap(T[] initialArray = null)
         {
@@ -33,7 +32,7 @@ namespace Lab2
 
         /// <summary>
         /// Returns the min item but does NOT remove it.
-        /// Time complexity: O(?).
+        /// Time complexity: O(1).
         /// </summary>
         public T Peek()
         {
@@ -48,7 +47,7 @@ namespace Lab2
         // TODO
         /// <summary>
         /// Adds given item to the heap.
-        /// Time complexity: O(?).
+        /// Time complexity: O(log N).
         /// </summary>
         public void Add(T item)
         {
@@ -68,6 +67,10 @@ namespace Lab2
 
         }
 
+        /// <summary>
+        ///  Extract
+        /// </summary>
+        /// <returns></returns>
         public T Extract()
         {
             return ExtractMin();
@@ -80,14 +83,21 @@ namespace Lab2
         /// </summary>
         public T ExtractMax()
         {
-            // linear search
-
+            var max = array[0];
+            foreach (var item in array)
+            {
+                if (item.CompareTo(max) > 0)
+                {
+                    max = item;
+                }
+            }
+            return max;
         }
 
         // TODO
         /// <summary>
         /// Removes and returns the min item in the min-heap.
-        /// Time ctexity: O( log(n) ).
+        /// Time complexity: O( log(n) ).
         /// </summary>
         public T ExtractMin()
         {
@@ -119,9 +129,9 @@ namespace Lab2
         {
             // linear search
 
-            foreach (var item in array)
+            for (int i = 0; i < Count; i++)
             {
-                if (item.CompareTo(value) == 0)
+                if (array[i].CompareTo(value) == 0)
                 {
                     return true;
                 }
@@ -135,7 +145,11 @@ namespace Lab2
         // Time Complexity: O( log(n) )
         private void TrickleUp(int index)
         {
-
+            if (array[index].CompareTo(array[Parent(index)]) < 0)
+            {
+                Swap(index, Parent(index));
+                TrickleUp(Parent(index));
+            }
 
         }
 
@@ -143,7 +157,22 @@ namespace Lab2
         // Time Complexity: O( log(n) )
         private void TrickleDown(int index)
         {
+           var smallestChild = index;
+           if (LeftChild(index) < Count && array[smallestChild].CompareTo(array[LeftChild(index)]) > 0)
+           {
+                smallestChild = LeftChild(index);
+           }
 
+           if (RightChild(index) < Count && array[smallestChild].CompareTo(array[RightChild(index)]) > 0)
+           {
+                smallestChild = RightChild(index);
+           }
+
+           if (index != smallestChild)
+           {
+                Swap(smallestChild, index);
+                TrickleDown(smallestChild);
+           }
         }
 
         // TODO
@@ -152,7 +181,7 @@ namespace Lab2
         /// </summary>
         private static int Parent(int position)
         {
-
+            return (position - 1) / 2;
         }
 
         // TODO
@@ -161,6 +190,7 @@ namespace Lab2
         /// </summary>
         private static int LeftChild(int position)
         {
+            return (position * 2) + 1;
         }
 
         // TODO
@@ -169,6 +199,7 @@ namespace Lab2
         /// </summary>
         private static int RightChild(int position)
         {
+            return (position * 2) + 2;
         }
 
         private void Swap(int index1, int index2)
