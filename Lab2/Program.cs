@@ -20,7 +20,7 @@ namespace Lab2
             heap1.Add(5000);
             // Console.WriteLine(  (heap1.Contains(5000))); //True
             //Console.WriteLine( (heap1.Contains(150))); //True
-            heap1.ExtractMin();
+            Console.WriteLine(   heap1.ExtractMin());
             Console.WriteLine( (heap1.Contains(0))); //False
             Console.WriteLine(heap1.ExtractMax());
 

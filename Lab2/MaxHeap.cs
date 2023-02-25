@@ -157,21 +157,16 @@ namespace Lab2
         // Time Complexity: O( log(n) )
         private void TrickleDown(int index)
         {
-            var largestChild = index;
-            if (LeftChild(index) < Count && array[largestChild].CompareTo(array[LeftChild(index)]) < 0)
+            if (LeftChild(index) < Count && array[index].CompareTo(array[LeftChild(index)]) < 0)
             {
-                largestChild = LeftChild(index);
+                Swap(LeftChild(index), index);
+                TrickleDown(LeftChild(index));
             }
 
-            if (RightChild(index) < Count && array[largestChild].CompareTo(array[RightChild(index)]) < 0)
+            if (RightChild(index) < Count && array[index].CompareTo(array[RightChild(index)]) < 0)
             {
-                largestChild = RightChild(index);
-            }
-
-            if (index != largestChild)
-            {
-                Swap(largestChild, index);
-                TrickleDown(largestChild);
+                Swap(RightChild(index), index);
+                TrickleDown(RightChild(index));
             }
         }
 
