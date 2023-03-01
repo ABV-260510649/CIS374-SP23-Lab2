@@ -6,7 +6,7 @@ namespace Lab2
     {
         static void Main(string[] args)
         {
-            MinHeap<int> heap1 = new MinHeap<int>();
+            /*MinHeap<int> heap1 = new MinHeap<int>();
             heap1.Add(0);
             heap1.Add(25);
             heap1.Add(50);
@@ -22,7 +22,7 @@ namespace Lab2
             //Console.WriteLine( (heap1.Contains(150))); //True
             Console.WriteLine(   heap1.ExtractMin());
             Console.WriteLine( (heap1.Contains(0))); //False
-            Console.WriteLine(heap1.ExtractMax());
+            Console.WriteLine(heap1.ExtractMax());*/
 
             /*MaxHeap<int> heap1 = new MaxHeap<int>();
             heap1.Add(0);
@@ -34,11 +34,30 @@ namespace Lab2
             heap1.Add(150);
 
             heap1.Add(5000);
-            heap1.ExtractMax();
+            Console.WriteLine(   heap1.ExtractMax());
             Console.WriteLine(heap1.Peek());
             Console.WriteLine(heap1.Count);
             Console.WriteLine( (heap1.Contains(5000)));
             Console.WriteLine(heap1.ExtractMin());*/
+
+            MinHeap<int> heap1 = new MinHeap<int>();
+            heap1.Add(0);
+            heap1.Add(25);
+            heap1.Add(50);
+            heap1.Add(75);
+            heap1.Add(100);
+            heap1.Add(125);
+            heap1.Add(150);
+
+            Console.WriteLine(heap1.Contains(25));
+            Console.WriteLine(heap1.Contains(75));
+            Console.WriteLine(heap1.Count);
+
+            heap1.Remove(25);
+            heap1.Remove(75);
+            Console.WriteLine(heap1.Contains(25));
+            Console.WriteLine(heap1.Contains(75));
+            Console.WriteLine(heap1.Count);
 
         }
     }

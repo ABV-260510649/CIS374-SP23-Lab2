@@ -108,14 +108,7 @@ namespace Lab2
 
             T min = array[0];
 
-            // swap root (first) and last element
-            Swap(0, Count - 1);
-
-            // "remove" last
-            Count--;
-
-            // trickle down from root (first)
-            TrickleDown(0);
+            Remove(min);
 
             return min;
         }
@@ -138,6 +131,48 @@ namespace Lab2
             }
 
             return false;
+
+        }
+
+        // TODO
+        /// <summary>
+        /// Updates the first element with the given value from the heap.
+        /// Time complexity: O( N )
+        /// </summary>
+        public void Update(T oldValue, T newValue)
+        {
+
+            for (int i = 0; i < Count; i++)
+            {
+                if (array[i].CompareTo(oldValue) == 0)
+                {
+                    array[i] = newValue;
+                }
+            }
+
+        }
+
+        // TODO
+        /// <summary>
+        /// Removes the first element with the given value from the heap.
+        /// Time complexity: O( log N )
+        /// </summary>
+        public void Remove(T value)
+        {
+            int index = 0;
+            for (int i = 0; i < Count; i++)
+            {
+                if (array[i].CompareTo(value) == 0)
+                {
+                    index = i;
+                }
+            }
+
+            Swap(index, Count - 1);
+
+            Count--;
+
+            TrickleDown(index);
 
         }
 
