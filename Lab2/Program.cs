@@ -6,58 +6,26 @@ namespace Lab2
     {
         static void Main(string[] args)
         {
-            /*MinHeap<int> heap1 = new MinHeap<int>();
-            heap1.Add(0);
-            heap1.Add(25);
-            heap1.Add(50);
-            heap1.Add(75);
-            heap1.Add(100);
-            heap1.Add(125);
-            heap1.Add(150);
+            MaxHeap<int> heap0 = new MaxHeap<int>();
+            heap0.Add(160);
+            heap0.Add(130);
+            heap0.Add(100);
+            heap0.Add(90);
+            heap0.Add(60);
 
-            //Console.WriteLine( (heap1.Contains(25))); True
-            //Console.WriteLine( (heap1.Contains(5000))); // False
-            heap1.Add(5000);
-            // Console.WriteLine(  (heap1.Contains(5000))); //True
-            //Console.WriteLine( (heap1.Contains(150))); //True
-            Console.WriteLine(   heap1.ExtractMin());
-            Console.WriteLine( (heap1.Contains(0))); //False
-            Console.WriteLine(heap1.ExtractMax());*/
+            heap0.Update(60, 65);
 
-            /*MaxHeap<int> heap1 = new MaxHeap<int>();
-            heap1.Add(0);
-            heap1.Add(25);
-            heap1.Add(50);
-            heap1.Add(75);
-            heap1.Add(100);
-            heap1.Add(125);
-            heap1.Add(150);
 
-            heap1.Add(5000);
-            Console.WriteLine(   heap1.ExtractMax());
-            Console.WriteLine(heap1.Peek());
-            Console.WriteLine(heap1.Count);
-            Console.WriteLine( (heap1.Contains(5000)));
-            Console.WriteLine(heap1.ExtractMin());*/
+            heap0.Update(130, 85);
 
-            MinHeap<int> heap1 = new MinHeap<int>();
-            heap1.Add(0);
-            heap1.Add(25);
-            heap1.Add(50);
-            heap1.Add(75);
-            heap1.Add(100);
-            heap1.Add(125);
-            heap1.Add(150);
 
-            Console.WriteLine(heap1.Contains(25));
-            Console.WriteLine(heap1.Contains(75));
-            Console.WriteLine(heap1.Count);
+            heap0.Update(90, 165);
 
-            heap1.Remove(25);
-            heap1.Remove(75);
-            Console.WriteLine(heap1.Contains(25));
-            Console.WriteLine(heap1.Contains(75));
-            Console.WriteLine(heap1.Count);
+
+            heap0.Update(160, 250);
+
+            heap0.Update(0, 10);
+            Console.WriteLine( heap0.Contains(0));
 
         }
     }

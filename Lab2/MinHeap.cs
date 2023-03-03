@@ -137,17 +137,35 @@ namespace Lab2
         // TODO
         /// <summary>
         /// Updates the first element with the given value from the heap.
-        /// Time complexity: O( N )
+        /// Time complexity: O( log N )
         /// </summary>
         public void Update(T oldValue, T newValue)
         {
 
-            for (int i = 0; i < Count; i++)
+            if (Contains(oldValue))
             {
-                if (array[i].CompareTo(oldValue) == 0)
+                for (int i = 0; i < Count; i++)
                 {
-                    array[i] = newValue;
+                    if (array[i].CompareTo(oldValue) == 0)
+                    {
+                        array[i] = newValue;
+                        if (newValue.CompareTo(oldValue) > 0)
+                        {
+                            TrickleDown(i);
+                        }
+
+                        if (newValue.CompareTo(oldValue) < 0)
+                        {
+                            TrickleUp(i);
+                        }
+                        return;
+                    }
+
                 }
+            }
+            else
+            {
+                throw new Exception("Value not in the array");
             }
 
         }
@@ -159,20 +177,29 @@ namespace Lab2
         /// </summary>
         public void Remove(T value)
         {
-            int index = 0;
-            for (int i = 0; i < Count; i++)
+            if (Contains(value))
             {
-                if (array[i].CompareTo(value) == 0)
+                int index = 0;
+                for (int i = 0; i < Count; i++)
                 {
-                    index = i;
+                    if (array[i].CompareTo(value) == 0)
+                    {
+                        index = i;
+                        break;
+                    }
                 }
+
+                Swap(index, Count - 1);
+
+                Count--;
+
+                TrickleDown(index);
+            }
+            else
+            {
+                throw new Exception("Value not in the array");
             }
 
-            Swap(index, Count - 1);
-
-            Count--;
-
-            TrickleDown(index);
 
         }
 
